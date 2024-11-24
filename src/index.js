@@ -14,15 +14,20 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.error('MongoDB connection error:', err));
+// MongoDB Connection
+console.log('MongoDB URI:', process.env.MONGODB_URI);
+mongoose
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB Atlas connected'))
+  .catch((err) => {
+    console.error('MongoDB connection error:', err.message);
+    process.exit(1); // Exit if DB connection fails
+  });
 
-// Routes
+// API Routes
 app.use('/api', routes);
 
-// Start the server
+// Server Start
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });

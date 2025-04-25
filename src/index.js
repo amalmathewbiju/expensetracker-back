@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 
 // Define your frontend URL
 const allowedOrigins = [
-  'expense-tracker-amal.netlify.app',  // Netlify URL
+  'https://expense-tracker-amal.netlify.app/',  // Netlify URL
 ];
 
 // Configure CORS with specific origins
